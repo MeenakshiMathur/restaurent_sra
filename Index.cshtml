@@ -2,6 +2,7 @@
 
 @{
 	ViewData["Title"]= "Restaurant";
+	@ViewBag.RestaurantID;
 }
 
 <div>
@@ -9,10 +10,11 @@
 	<table class="table">
 		<thead>
 			<tr>
-				@using (Html.BeginForm("SearchRestaurent)", "Home", FormMethod.Post))
+				@using (Html.BeginForm("SearchRestaurent", "Home", FormMethod.Post)   )
 			{
-				<th>	
-					Restaurant Id:<input id="restaurent_id" type="text" name="RestaurantId"/>
+				<th>					
+					Restaurent ID:@Html.TextBox("RestaurantID")
+						@*@Html.ActionLink("About", "About", "Home",new { RestaurantID = ViewBag.RestaurantID }, htmlAttributes:null )*@
 					<input type="submit" id="rest_submit" value="Search" class="btn btn-primary"/>
 						<input type="submit" formaction="Index" ivalue="Show All" class="btn btn-primary" />
 				</th>
@@ -62,7 +64,7 @@
 		</tbody>
 	</table>
 	</div>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	@*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
 	$("#rest_submit").click(function () {
 		$.ajax({
@@ -83,7 +85,7 @@
 		});
 	});
 			});
-</script>
+</script>*@
 
 
 			
