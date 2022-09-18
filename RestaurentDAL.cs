@@ -5,6 +5,8 @@ using System.Linq;
 using restaurant_sra.Models;
 using Microsoft.Extensions.Configuration;
 using System.Data;
+using Microsoft.AspNetCore.Mvc;
+
 namespace restaurant_sra.DataLayer
 { 
     public class RestaurentDAL
@@ -53,45 +55,83 @@ namespace restaurant_sra.DataLayer
 
         }
 
+        //[HttpPost]
+        //public List<Restaurant> GetRestaurantsbyID(Restaurant)
+        //{
+        //    List<Restaurant> ListofRestaurents = new List<Restaurant>();
+        //    using (SqlConnection cn = new SqlConnection(cnn))
+        //    {
+        //        using (SqlCommand cmd = new SqlCommand("USP_getonerest",cn))
+        //        {
+        //            cmd.Parameters.Add("@RestaurantID", SqlDbType.Int);
+        //            cmd.Parameters["@RestaurantID"].Value = RestaurantID;
+        //            cmd.CommandType = CommandType.StoredProcedure;
+                    
+        //            if (cn.State == ConnectionState.Closed)
+        //               cn.Open();
+        //            IDataReader reader= cmd.ExecuteReader();
+        //            //RestaurantID = int.Parse(reader["RestaurantID"].ToString())
+                        
 
-        public List<Restaurant> GetRestaurantsbyID(int RestaurantID)
+                    
+        //            while (reader.Read())
+        //            {
+        //                ListofRestaurents.Add(new Restaurant()
+        //                {
+
+        //                    RestaurantID = int.Parse(reader["RestaurantID"].ToString()),
+        //                    RestaurantName = reader["RestaurantName"].ToString(),
+        //                    Address = reader["Address"].ToString(),
+        //                    MobileNo = reader["MobileNo"].ToString(),
+
+        //                });
+        //            }
+        //        }
+        //    }
+        //    return ListofRestaurents;
+
+
+        
+    [HttpPost]
+    public List<Restaurant> GetRestaurantsbyID(int RestaurantID)
+    {
+        List<Restaurant> ListofRestaurents = new List<Restaurant>();
+        using (SqlConnection cn = new SqlConnection(cnn))
         {
-            List<Restaurant> ListofRestaurents = new List<Restaurant>();
-            using (SqlConnection cn = new SqlConnection(cnn))
+            using (SqlCommand cmd = new SqlCommand("USP_getonerest", cn))
             {
-                using (SqlCommand cmd = new SqlCommand("USP_getonerest",cn))
+                cmd.Parameters.Add("@RestaurentID", SqlDbType.Int);
+                cmd.Parameters["@RestaurentID"].Value = RestaurantID;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                if (cn.State == ConnectionState.Closed)
+                    cn.Open();
+                IDataReader reader = cmd.ExecuteReader();
+                //RestaurantID = int.Parse(reader["RestaurantID"].ToString())
+
+
+
+                while (reader.Read())
                 {
-                    cmd.Parameters.Add("@RestaurantID", SqlDbType.Int);
-                    cmd.Parameters["@RestaurantID"].Value = RestaurantID;
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    
-                   // if (cn.State == ConnectionState.Closed)1
-                       cn.Open();
-                    
-                    IDataReader reader = cmd.ExecuteReader();
-                    
-                    while (reader.Read())
+                    ListofRestaurents.Add(new Restaurant()
                     {
-                        ListofRestaurents.Add(new Restaurant()
-                        {
 
-                            RestaurantID = int.Parse(reader["RestaurantID"].ToString()),
-                            RestaurantName = reader["RestaurantName"].ToString(),
-                            Address = reader["Address"].ToString(),
-                            MobileNo = reader["MobileNo"].ToString(),
+                        RestaurantID = int.Parse(reader["RestaurantID"].ToString()),
+                        RestaurantName = reader["RestaurantName"].ToString(),
+                        Address = reader["Address"].ToString(),
+                        MobileNo = reader["MobileNo"].ToString(),
 
-                        });
-                    }
+                    });
                 }
             }
-            return ListofRestaurents;
-
-
         }
+        return ListofRestaurents;
 
 
+    }
 
-        public List<Cuisine> GetCuisine()
+
+    public List<Cuisine> GetCuisine()
         {
 
             List<Cuisine> ListofCuisine= new List<Cuisine>();
@@ -139,3 +179,4 @@ namespace restaurant_sra.DataLayer
 
     }
 }
+

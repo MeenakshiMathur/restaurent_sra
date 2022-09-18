@@ -13,18 +13,8 @@ namespace restaurant_sra.Controllers
         {
             _logger = logger;
         }
-
         
-
-        // GET: CuisineController
-        //public IActionResult Index()
-        //{
-          //  RestaurentDAL _CuisineDal = new RestaurentDAL();
-         //   List<Cuisine> CuisineList = new List<Cuisine>();
-        //    CuisineList = _CuisineDal.GetCuisine();
-
-        //    return View(CuisineList);
-       // }
+        [HttpGet]
        public IActionResult Index()
         {
          RestaurentDAL _RestaurentDAL= new RestaurentDAL();
@@ -37,13 +27,24 @@ namespace restaurant_sra.Controllers
         [HttpPost]
         public IActionResult SearchRestaurent(int RestaurantID)
         {
-            
+
             RestaurentDAL _RestaurentDAL = new RestaurentDAL();
             List<Restaurant> restaurantslist = new List<Restaurant>();
             restaurantslist = _RestaurentDAL.GetRestaurantsbyID(RestaurantID);
 
-            return View("Index",restaurantslist);
+            return View("Index", restaurantslist);
         }
+
+        //[HttpPost]
+        //public IActionResult SearchRestaurent(FormCollection rest)
+        //{
+
+        //    RestaurentDAL _RestaurentDAL = new RestaurentDAL();
+        //    List<Restaurant> restaurantslist = new List<Restaurant>();
+        //    restaurantslist = _RestaurentDAL.GetRestaurantsbyID(rest);
+
+        //    return View("Index", restaurantslist);
+        //}
 
 
 

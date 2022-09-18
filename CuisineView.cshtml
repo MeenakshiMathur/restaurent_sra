@@ -1,11 +1,24 @@
 ﻿@model IEnumerable<restaurant_sra.Models.Cuisine>
-
+<style type="text/css">
+    .webGrid {
+        margin: 4px;
+        border-collapse: collapse;
+        width: 500px;
+        background-color: #B4CFC3;
+    }></style>
 @{
     ViewData["Title"] = "Cuisine";
 }
+
+@*@{
+    WebGrid obj = new WebGrid();
+}@obj.GetHtml();
+
+@obj.GetHtml(tableStyle:"webGrid");*@
+
 <p>
     <a asp-action="Create">Create New</a>
-    <input type="submit" formaction="Index" value="Show All" class="btn btn-primary" />
+    <input type="submit" formaction="Cuisine" value="Show All" class="btn btn-primary" />
 </p>
 <table class="table">
     <thead>

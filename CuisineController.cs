@@ -1,14 +1,25 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using restaurant_sra.DataLayer;
+using restaurant_sra.Models;
 
 namespace restaurant_sra.Controllers
 {
     public class CuisineController : Controller
     {
-        
 
-        // GET: CuisineController/Details/5
+        //GET: CuisineController
+        public IActionResult CuisineView()
+        {
+          RestaurentDAL _CuisineDal = new RestaurentDAL();
+           List<Cuisine> CuisineList = new List<Cuisine>();
+            CuisineList = _CuisineDal.GetCuisine();
+
+           return View(CuisineList);
+         }
+
+
+      //   GET: CuisineController/Details/5
         public ActionResult Details(int id)
         {
             return View();
