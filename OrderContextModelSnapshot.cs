@@ -49,7 +49,7 @@ namespace restaurant_sra.Migrations
 
                     b.HasKey("OrderID");
 
-                    b.ToTable("Order");
+                    b.ToTable("OrderTable");
                 });
 #pragma warning restore 612, 618
         }

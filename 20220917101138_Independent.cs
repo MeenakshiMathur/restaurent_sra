@@ -9,7 +9,7 @@ namespace restaurant_sra.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Order",
+                name: "OrderTable",
                 columns: table => new
                 {
                     OrderID = table.Column<int>(type: "int", nullable: false)
@@ -30,7 +30,7 @@ namespace restaurant_sra.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "OrderTable");
         }
     }
 }

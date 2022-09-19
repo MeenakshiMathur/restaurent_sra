@@ -22,6 +22,26 @@ namespace restaurant_sra.Controllers
 			return View(order);
 		}
 
+        public IActionResult Create()
+        {
+            var order = new Order();
+			{
+				db.Order.Add(order);	
+			}
+            return View(order);
+        }
+
+		[HttpPost]
+        //public async IActionResult (Order O)
+        //{
+        //    var order = new Order();
+        //    {
+        //        db.Order.Add(order);
+        //    }
+        //    return View(order);
+        //}
+
+
         public IActionResult Delete(int id)
         {
 			Order order = db.Order.FirstOrDefault(s => s.OrderID== id);
