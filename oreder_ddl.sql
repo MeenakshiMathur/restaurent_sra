@@ -80,8 +80,10 @@ ON RestaurantMenuItem.CuisineID = Cuisine.CuisineID
 
 
 
+SELECT * FROM restaurent_sra.dbo.Order;
 
-
+SELECT * FROM Ordertable
+SELECT * FROM Order_table
 
 
 

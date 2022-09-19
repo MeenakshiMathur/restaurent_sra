@@ -29,6 +29,8 @@ DROP TABLE DiningTable;
   
 SELECT *  FROM  DiningTable;
 
+
+CREATE NONCLUSTERED INDEX NC_DiningTable_RestaurantID on DiningTable (RestaurantID) INCLUDE (Location)
 CREATE PROCEDURE USP_Dining_Update 
 @Id AS INT
 AS

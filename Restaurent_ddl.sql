@@ -7,6 +7,7 @@ MobileNo nvarchar(10) UNIQUE NOT NULL
 
  DROP TABLE Restaurant;
 
+ 
 
  --Create procedure for inserting / Deleting / Updating of data into above table. Atleast add 2 Restaurant Names.
 --Procedure should accept following Input Parameters.
@@ -87,8 +88,10 @@ SELECT * FROM Restaurant
 END
 
 CREATE PROCEDURE USP_getonerest 
-@RestaurentID as int
+@RestaurantID as int
 AS
 BEGIN
-SELECT * FROM  Restaurant WHERE RestaurantID=@RestaurentID
+SELECT * FROM  Restaurant WHERE RestaurantID=@RestaurantID
 END
+
+

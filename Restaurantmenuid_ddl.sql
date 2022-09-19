@@ -10,6 +10,8 @@ ItemPrice float
 )
 
 
+CREATE NONCLUSTERED INDEX NC_RestaurantMenuItem_CuisineID on RestaurantMenuItem (CuisineID) INCLUDE (ItemName,ItemPrice)
+
 DROP TABLE  RestaurantMenuItem;
 go
 

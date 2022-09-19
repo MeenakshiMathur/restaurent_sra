@@ -67,3 +67,37 @@ AS
 
   
   execute sp_Cus_ins_up  1,'chat'
+
+
+CREATE NONCLUSTERED INDEX NC_Cuisine_RestaurantID on Cuisine (RestaurantID) INCLUDE (CuisineName)
+
+
+--Report #2
+------------
+--2)	Create procedure to get the list of all customers, Order Details and Table they used for dining. 
+--Procedure should be written dynamically so that filters can be applied. 
+--Procedure should accept @FilterBy & @OrderBy variable to filter and order the data dynamically. 
+
+
+ALTER PROCEDURE USP_Customer_OrderDetails
+AS
+BEGIN
+SELECT Customer.CustomerID ,
+		Customer.CustomerName,
+		Ordertable.OrderID,
+		Ordertable.OrderDate,
+		Ordertable.RestaurantID,
+		Ordertable.MenuITemID,
+		Ordertable.ItemQuantity,
+		Ordertable.OrderAmount,
+		Ordertable.DiningTableId
+FROM Customer, Ordertable, Bills
+WHERE Customer.RestaurantID= Ordertable.RestaurantID 
+END
+
+
+AND Bills.CustomerID=Customer.CustomerID
+EXECUTE USP_Customer_OrderDetails
+
+
+ INSERT INTO dbo.Order VALUES (SELECT * FROM Ordertable);
